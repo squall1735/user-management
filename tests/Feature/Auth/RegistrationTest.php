@@ -1,6 +1,6 @@
 <?php
 
-use Laravel\Fortify\Features;
+use LARAVEL\Fortify\Features;
 
 beforeEach(function () {
     $this->skipUnlessFortifyHas(Features::registration());
@@ -35,6 +35,21 @@ test('registration fails when the password confirmation does not match', functio
     ]);
 
     $response->assertSessionHasErrors('password_confirmation');
+
+    $this->assertGuest();
+});
+
+test('registration fails when the email is already taken', function () {
+    User::factory()->create(['email' => 'test@example.com']);
+
+    $response = $this->post(route('register.store'), [
+        'name' => 'John Doe',
+        'email' => 'test@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'password',
+    ]);
+
+    $response->assertSessionHasErrors('email');
 
     $this->assertGuest();
 });
