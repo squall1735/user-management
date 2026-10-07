@@ -5,12 +5,10 @@ namespace App\Livewire\Users;
 use App\Models\User;
 use Flux\Flux;
 use Illuminate\Contracts\View\View;
-use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-#[Title('Users')]
 class Index extends Component
 {
     use WithPagination;
@@ -57,6 +55,6 @@ class Index extends Component
             ->latest('id')
             ->paginate(5);
 
-        return view('livewire.users.index', ['users' => $users]);
+        return view('livewire.users.index', ['users' => $users])->title(__('Manage users'));
     }
 }

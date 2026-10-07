@@ -5,12 +5,11 @@ namespace App\Livewire\Settings;
 use App\Concerns\PasswordValidationRules;
 use App\Concerns\ProfileValidationRules;
 use Flux\Flux;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
-use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Edit profile')]
 class Profile extends Component
 {
     use PasswordValidationRules, ProfileValidationRules;
@@ -57,5 +56,10 @@ class Profile extends Component
         $this->reset('current_password', 'password', 'password_confirmation');
 
         Flux::toast(variant: 'success', text: __('Profile updated.'));
+    }
+
+    public function render(): View
+    {
+        return view('livewire.settings.profile')->title(__('Edit profile'));
     }
 }

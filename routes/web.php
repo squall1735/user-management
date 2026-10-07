@@ -6,7 +6,13 @@ use App\Livewire\Users\Index;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome')->name('home');
+Route::redirect('/', '/dashboard')->name('home');
+
+Route::get('locale/{locale}', function (string $locale) {
+    session(['locale' => $locale]);
+
+    return back();
+})->whereIn('locale', ['th', 'en'])->name('locale');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', fn () => view('dashboard', [

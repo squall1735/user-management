@@ -5,10 +5,9 @@ namespace App\Livewire\Users;
 use App\Livewire\Forms\UserForm;
 use App\Models\User;
 use Flux\Flux;
-use Livewire\Attributes\Title;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
-#[Title('Users')]
 class Editor extends Component
 {
     public UserForm $form;
@@ -35,5 +34,11 @@ class Editor extends Component
         );
 
         $this->redirectRoute('users.index', navigate: true);
+    }
+
+    public function render(): View
+    {
+        return view('livewire.users.editor')
+            ->title($this->form->user ? __('Edit user') : __('Add user'));
     }
 }
