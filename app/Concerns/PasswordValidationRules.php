@@ -12,9 +12,9 @@ trait PasswordValidationRules
      *
      * @return array<int, Password|ValidationRule|array<mixed>|string>
      */
-    protected function passwordRules(): array
+    protected function passwordRules(bool $confirmed = true): array
     {
-        return ['required', 'string', Password::default(), 'confirmed'];
+        return array_filter(['required', 'string', Password::default(), $confirmed ? 'confirmed' : null]);
     }
 
     /**

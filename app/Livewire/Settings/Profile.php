@@ -35,13 +35,7 @@ class Profile extends Component
 
         $validated = $this->validate($this->profileRules($user->id));
 
-        $user->fill($validated);
-
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
-        $user->save();
+        $user->update($validated);
 
         Flux::toast(variant: 'success', text: __('Profile updated.'));
     }

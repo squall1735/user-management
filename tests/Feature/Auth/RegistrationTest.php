@@ -25,3 +25,16 @@ test('new users can register', function () {
 
     $this->assertAuthenticated();
 });
+
+test('registration fails when the password confirmation does not match', function () {
+    $response = $this->post(route('register.store'), [
+        'name' => 'John Doe',
+        'email' => 'test@example.com',
+        'password' => 'password',
+        'password_confirmation' => 'different',
+    ]);
+
+    $response->assertSessionHasErrors('password_confirmation');
+
+    $this->assertGuest();
+});
