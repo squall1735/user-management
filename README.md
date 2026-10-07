@@ -52,7 +52,7 @@ Seeder สร้างผู้ใช้ตัวอย่างเพิ่ม�
 - ป้องกันการลบบัญชีของตัวเอง (ทั้งใน UI และฝั่ง server)
 - แจ้งเตือนรหัสผ่านไม่ตรงกันแบบ real-time ขณะพิมพ์
 - Feature tests ด้วย Pest
-- Light / dark mode ตามระบบของผู้ใช้
+- Light / Dark / System theme switcher
 
 ## รัน test / Running tests
 

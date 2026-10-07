@@ -4,7 +4,10 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white antialiased dark:bg-linear-to-b dark:from-neutral-950 dark:to-neutral-900">
-        <x-locale-switcher class="absolute end-4 top-4" />
+        <div class="absolute end-4 top-4 flex items-center gap-2">
+            <x-appearance-switcher />
+            <x-locale-switcher />
+        </div>
 
         <div class="bg-background flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
             <div class="flex w-full max-w-sm flex-col gap-2">
